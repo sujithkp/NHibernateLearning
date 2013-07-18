@@ -31,3 +31,5 @@ D:\Sujith\MyProjects\NHibernateLearning\FluentNhibernateLearning\bin\Debug\Fluen
 D:\Sujith\MyProjects\NHibernateLearning\FluentNhibernateLearning\bin\Debug\Iesi.Collections.xml
 D:\Sujith\MyProjects\NHibernateLearning\FluentNhibernateLearning\bin\Debug\NHibernate.xml
 D:\Sujith\MyProjects\NHibernateLearning\FluentNhibernateLearning\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Projects\NHibernateLearning\trunk\FluentNhibernateLearning\obj\x86\Debug\FluentNhibernateLearning.exe
+D:\Projects\NHibernateLearning\trunk\FluentNhibernateLearning\obj\x86\Debug\FluentNhibernateLearning.pdb
