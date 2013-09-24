@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using FluentNhibernateLearning.Entities;
+using FluentNHibernate.Mapping;
+
+namespace FluentNhibernateLearning.Mappings
+{
+    public class ProductsMap :ClassMap<Product>
+    {
+        public ProductsMap()
+        {
+            Table("Products");
+            Id(x => x.ProductId);
+            Map(x => x.ProductName);
+            Map(x => x.QuantityPerUnit);
+            Map(x => x.UnitPrice);
+            Map(x => x.UnitsInStock);
+            Map(x => x.UnitsOnOrder);
+            Map(x => x.ReorderLevel);
+            Map(x => x.Discontinued);
+        }
+    }
+}

@@ -1,0 +1,67 @@
+﻿using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Cfg;
+using NHibernate;
+using FluentNhibernateLearning.Entities;
+using System.Collections.Generic;
+using System;
+
+namespace FluentNhibernateLearning
+{
+    class Program
+    {
+        private void ShowObject(object obj)
+        {
+            Console.WriteLine();
+            foreach (var property in obj.GetType().GetProperties())
+            {
+                if (property.GetType().Equals(typeof(object)))
+                {
+                    ShowObject(property.GetValue(obj, null));
+                    continue;
+                }
+                Console.WriteLine(property.Name + " : " + property.GetValue(obj, null));
+            }
+        }
+
+        public IList<Product> GetProducts()
+        {
+            IList<Product> products = null;
+
+            using (var session = SessionFactory.OpenSession())
+            {
+                products = session.CreateCriteria<Product>()
+                    .List<Product>();
+            }
+
+            return products;
+        }
+
+        private static ISessionFactory CreateSessionFactory()
+        {
+            var db = MsSqlConfiguration.MsSql2008
+                .ConnectionString("Data Source = .\\sqlexpress; Initial Catalog = Northwind; Integrated Security=True;");
+
+            return SessionFactory = Fluently.Configure()
+                .Database(db)
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Program>())
+                .BuildSessionFactory();
+        }
+
+        private static ISessionFactory SessionFactory { get; set; }
+
+        static Program()
+        {
+            CreateSessionFactory();
+        }
+
+        static void Main(string[] args)
+        {
+            var instance = new Program();
+
+            foreach (var p in instance.GetProducts())
+                instance.ShowObject(p);
+
+            Console.ReadLine();
+        }
+    }
+}
