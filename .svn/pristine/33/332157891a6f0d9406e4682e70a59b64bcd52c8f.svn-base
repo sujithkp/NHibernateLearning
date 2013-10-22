@@ -1,0 +1,11 @@
+select * from suppliers
+
+select * from products
+
+select * from customers
+
+
+-- inner join example.
+select p.ProductId, p.ProductName, s.SupplierID, s.CompanyName from Products p inner join Suppliers s on p.SupplierId = s.SupplierId
+
+select  p.Supplierid,s.CompanyName ,count(p.supplierid) [Products] from Products p inner join Suppliers s on p.SupplierId = s.SupplierId group by p.supplierid, s.CompanyName

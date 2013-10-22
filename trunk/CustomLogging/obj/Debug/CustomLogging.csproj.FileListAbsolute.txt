@@ -1,0 +1,5 @@
+D:\Projects\NHibernateLearning\trunk\CustomLogging\bin\Debug\CustomLogging.dll
+D:\Projects\NHibernateLearning\trunk\CustomLogging\bin\Debug\CustomLogging.pdb
+D:\Projects\NHibernateLearning\trunk\CustomLogging\obj\Debug\CustomLogging.csprojResolveAssemblyReference.cache
+D:\Projects\NHibernateLearning\trunk\CustomLogging\obj\Debug\CustomLogging.dll
+D:\Projects\NHibernateLearning\trunk\CustomLogging\obj\Debug\CustomLogging.pdb

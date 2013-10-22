@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using FluentNhibernateLearning.Dal;
+using FluentNhibernateLearning.Entities;
+
+namespace FluentNhibernateLearning.Controller
+{
+    public class NWindController
+    {
+        #region Properties
+
+        public ProductDal ProductDal { get; set; }
+
+        public CustomerDal CustomerDal { get; set; }
+
+        public EmployeeDal EmployeeDal { get; set; }
+
+        public SupplierDal SupplierDal { get; set; }
+
+        #endregion
+
+        public NWindController()
+        {
+            ProductDal = new ProductDal();
+
+            CustomerDal = new CustomerDal();
+
+            EmployeeDal = new EmployeeDal();
+
+            SupplierDal = new SupplierDal();
+        }
+
+        public IList<Supplier> GetSuppliers()
+        {
+            return SupplierDal.GetSuppliers();
+        }
+
+        public IList<Customer> GetCustomers()
+        {
+            return CustomerDal.GetCustomers();
+        }
+
+        public IList<Customer> GetCustomers(string country)
+        {
+            return CustomerDal.GetCustomers(country);
+        }
+
+        public IList<Product> GetOutOfStockProducts(int supplierId)
+        {
+            return ProductDal.GetOutOfStockProducts(supplierId);
+        }
+
+        public IList<Supplier> GetSuppliersOfThisProductCategory(Category category)
+        {
+            return SupplierDal.GetSuppliersOfThisProductCategory(category);
+        }
+    }
+}

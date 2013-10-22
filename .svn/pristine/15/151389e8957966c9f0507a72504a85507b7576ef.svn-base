@@ -1,0 +1,34 @@
+select * from suppliers
+select * from products
+
+select * from categories
+
+select * from customers
+
+insert into categories values('demo', 'demo' , null)
+
+select * from products where categoryid = 2
+
+select 
+	c.categoryname,
+	count(c.categoryid) 
+from 
+	products p inner join categories c 
+on 
+	c.categoryid = p.categoryid 
+group by 
+	c.categoryid, c.categoryname
+
+
+select c.categoryid, c.categoryname,count(p.categoryid) from categories c left join products p on c.categoryid = p.categoryid group by c.categoryid, c.categoryname, c.categoryid
+
+-- inner join example.
+select p.ProductId, p.ProductName, s.SupplierID, s.CompanyName from Products p inner join Suppliers s on p.SupplierId = s.SupplierId
+
+select  p.Supplierid,s.CompanyName ,count(p.supplierid) [Products] from Products p inner join Suppliers s on p.SupplierId = s.SupplierId group by p.supplierid, s.CompanyName
+
+select * 
+FROM Categories left JOIN Products
+ON Categories.CategoryID = Products.CategoryID;
+
+select supplierid from products where categoryid = 1

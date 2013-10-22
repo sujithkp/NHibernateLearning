@@ -1,0 +1,75 @@
+﻿using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Cfg;
+using NHibernate;
+using FluentNhibernateLearning.Entities;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+
+namespace FluentNhibernateLearning
+{
+    class Program
+    {
+        public void Show(object obj)
+        {
+            Console.WriteLine();
+
+            foreach (var property in obj.GetType().GetProperties())
+            {
+                Console.WriteLine(property.Name + " : " + property.GetValue(obj, null));
+            }
+        }
+
+        public IList<Product> GetProducts()
+        {
+            IList<Product> products = null;
+
+            products = NHibernateSession.CreateCriteria<Product>()
+                .List<Product>();
+
+            return products;
+        }
+
+        private static void Initialize()
+        {
+            var db = MsSqlConfiguration.MsSql2008
+                .ConnectionString("Data Source = .\\sqlexpress; Initial Catalog = Northwind; Integrated Security=True;");
+
+            NHibernateSession = Fluently.Configure()
+                .Database(db)
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Program>())
+                .BuildSessionFactory()
+                .OpenSession();
+        }
+
+        private static ISession NHibernateSession { get; set; }
+
+        static Program()
+        {
+            Initialize();
+        }
+
+        static void verify(List<Product> products)
+        {
+            foreach (var product in products)
+            {
+                var b = product.Supplier.Products.Contains(product);
+                if (!b)
+                    throw new InvalidOperationException();
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            var instance = new Program();
+            var products = instance.GetProducts();
+
+            var productsnotinstock = products.Where(x => x.UnitsInStock == 0).ToList();
+
+            verify(products.ToList());
+
+
+            Console.ReadLine();
+        }
+    }
+}

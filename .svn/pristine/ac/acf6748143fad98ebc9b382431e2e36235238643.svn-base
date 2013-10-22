@@ -1,0 +1,10 @@
+﻿
+namespace FluentNhibernateLearning.Entities
+{
+    public class Region
+    {
+        public virtual int RegionID { get; set; }
+
+        public virtual string RegionDescription { get; set; }
+    }
+}

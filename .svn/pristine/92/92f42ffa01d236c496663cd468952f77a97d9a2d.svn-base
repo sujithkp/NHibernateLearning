@@ -1,0 +1,7 @@
+select * from suppliers
+
+
+select * from products
+
+
+Northwind.dbo.Products: FK_Products_Suppliers

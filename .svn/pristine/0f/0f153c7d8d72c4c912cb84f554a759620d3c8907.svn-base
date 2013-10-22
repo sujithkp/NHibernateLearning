@@ -1,0 +1,35 @@
+﻿using FluentNHibernate.Mapping;
+using FluentNhibernateLearning.Entities;
+
+namespace FluentNhibernateLearning.Mappings
+{
+    public class EmployeeMap : ClassMap<Employee>
+    {
+        public EmployeeMap()
+        {
+            this.Table("Employees");
+            Id(x => x.EmployeeID);
+            Map(x => x.LastName);
+            Map(x => x.FirstName);
+            Map(x => x.Title);
+            Map(x => x.TitleOfCourtesy);
+            Map(x => x.BirthDate);
+            Map(x => x.HireDate);
+            Map(x => x.Address);
+            Map(x => x.City);
+            Map(x => x.Region);
+            Map(x => x.PostalCode);
+            Map(x => x.Country);
+            Map(x => x.HomePhone);
+            Map(x => x.Extension);
+            Map(x => x.Photo);
+            Map(x => x.Notes);
+            References(x => x.ReportsTo).Column("ReportsTo");
+            Map(x => x.PhotoPath);
+            HasManyToMany(x => x.Territories).Table("employeeterritories")
+                .ParentKeyColumn("EmployeeID").ChildKeyColumn("TerritoryID")
+                .LazyLoad(); 
+                
+        }
+    }
+}

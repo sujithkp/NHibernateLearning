@@ -1,0 +1,16 @@
+﻿using FluentNhibernateLearning.Entities;
+using FluentNhibernateLearning.Lib;
+using NHibernate.Criterion;
+
+namespace FluentNhibernateLearning.Dal
+{
+    public class EmployeeDal
+    {
+        public Employee GetEmployee(int employeeId)
+        {
+            return NHibernateHelper.CurrentSession.CreateCriteria<Employee>()
+                .Add(Restrictions.Eq("EmployeeID", employeeId))
+                .UniqueResult<Employee>();
+        }
+    }
+}

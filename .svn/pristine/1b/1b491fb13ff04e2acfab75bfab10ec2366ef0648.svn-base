@@ -1,0 +1,59 @@
+﻿using System;
+using System.Linq;
+using FluentNhibernateLearning.Controller;
+
+namespace FluentNhibernateLearning
+{
+    class Program
+    {
+        private static NWindController Controller = new NWindController();
+
+        /// <summary>
+        /// Simple Entity Loading.
+        /// </summary>
+        static void Sample1()
+        {
+            var customers = Controller.GetCustomers();
+            Console.WriteLine(customers.Count + " customers found.");
+        }
+
+        /// <summary>
+        /// Loading References.
+        /// </summary>
+        static void Sample2()
+        {
+            var suppliers = Controller.GetSuppliers();
+            suppliers.ToList()
+                .ForEach(x =>
+                    Console.WriteLine( x.CompanyName + " has " + x.Products.Count + " products. ")
+                    );
+        }
+
+        /// <summary>
+        /// loading based  on criteria.
+        /// </summary>
+        static void Sample3()
+        {
+            var country = "UK";
+            var customers = Controller.GetCustomers(country);
+            Console.WriteLine("customers in " + country + " are ");
+            foreach (var customer in customers)
+                Console.WriteLine(customer.ContactName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        static void Sample4()
+        {
+            var ps = Controller.GetOutOfStockProducts(2);
+        }
+
+        static void Main(string[] args)
+        {
+            Sample4();
+
+            Console.ReadLine();
+        }
+    }
+}
